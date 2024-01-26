@@ -180,9 +180,7 @@ struct
     | exception Invalid_argument _ -> false (* TODO: why this? *)
     | exception Cilfacade.TypeOfError _ -> false
     | ik ->
-      if IntDomain.should_wrap ik then
-        false
-      else if IntDomain.should_ignore_overflow ik then
+      if IntDomain.should_ignore_overflow ik then
         true
       else
         not (Queries.ID.is_top_of ik (ask.f (EvalInt exp)))
